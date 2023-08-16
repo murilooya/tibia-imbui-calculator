@@ -28,7 +28,7 @@ const gold_token : Imbuiment = {
     powerful: 6
 }
 
-function get_imbue_quantity (imbue_type : string) {
+function get_imbue_quantity (imbue_type : string) : Imbuiment{
     switch (imbue_type) {
         case ("vamp"):
             return vamp_imbui;
@@ -36,9 +36,18 @@ function get_imbue_quantity (imbue_type : string) {
             return void_imbui;
         case ("strike"):
             return strike_imbui;
+        default:
+            return vamp_imbui
     }
 }
 
-function calculate_imbuiment(prices : Imbuiment, gt_price : number, imbue_type : string) {
+export function calculate_imbuement_total(prices : Imbuiment, gt_price : number, imbue_type : string) : Imbuiment{
     const quantity : Imbuiment = get_imbue_quantity(imbue_type)
+    let total : Imbuiment = {
+        basic: quantity.basic*prices.basic,
+        intricate: quantity.intricate*prices.intricate + quantity.basic*prices.basic,
+        powerful: quantity.powerful*prices.powerful + quantity.intricate*prices.intricate + quantity.basic*prices.basic
+    }
+
+    return total
 }

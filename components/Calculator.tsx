@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-
+import { calculate_imbuement_total } from '@/utils/imbui_calculator'
 
 export function Calculator ( props : any) {
     const [formData, setFormData] = useState({gt: "",basic: "", intricate: "", powerful: ""});
